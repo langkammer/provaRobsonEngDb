@@ -1,4 +1,11 @@
 package br.com.robsonlangkammer.repository;
 
-public class ClienteRepository {
+import br.com.robsonlangkammer.model.Cliente;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+
+public interface ClienteRepository extends JpaRepository<Cliente, Long> {
+
+
 }

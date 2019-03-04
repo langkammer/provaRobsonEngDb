@@ -1,7 +1,13 @@
 package br.com.robsonlangkammer.model;
 
+import javax.persistence.*;
+
+@Entity
 public class Cliente {
 
+
+    @Id
+    @GeneratedValue
     private Long id;
 
     private String nome;
@@ -10,19 +16,22 @@ public class Cliente {
 
     private String sexo;
 
-    public Cliente(Long id, String nome, String cpf, String sexo) {
-        this.id = id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Vendedor vendedor;
+
+    public Cliente(){
+
+    }
+
+    public Cliente(String nome, String cpf, String sexo, Vendedor vendedor) {
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;
+        this.vendedor = vendedor;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -47,6 +56,14 @@ public class Cliente {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
     }
 
 

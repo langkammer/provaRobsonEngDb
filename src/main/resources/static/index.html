@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en"  class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en"  class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Gerenciamento de Vendas - PROVA ROBSON</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css">
+    <link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css">
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/fontawesome-all.min.css">
+</head>
+<body>
+
+<div ng-app="App">
+    <md-content>
+        <md-toolbar class="md-warn">
+            <div layout="row">
+                <md-toolbar-filler layout="row" layout-align="center center">
+                    <i class="fa fa-address-book" aria-hidden="true"></i>
+                </md-toolbar-filler >
+                <h1 class="md-toolbar-tools" layout-align="left center">
+                    <span>Catalogo de Vendedores / Cliente</span>
+                </h1>
+                <md-button class="md-raised md-primary">Vendedor   &nbsp &nbsp</md-button>
+                <md-button class="md-raised md-raised">Cliente</md-button>
+
+            </div>
+        </md-toolbar>
+    </md-content>
+    <div ui-view></div>
+</div>
+<!-- In production use:
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+-->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="bower_components/angular-material/angular-material.min.js"></script>
+<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="bower_components/lodash/dist/lodash.min.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/material-design-lite/material.min.js"></script>
+<script src="bower_components/angular-ui-notification/dist/angular-ui-notification.js"></script>
+<script src="bower_components/checklist-model/checklist-model.js"></script>
+
+<script src="app.js"></script>
+<script src="scripts/ClienteCtrl.js"></script>
+<script src="scripts/DashCtrl.js"></script>
+<script src="scripts/VendedorCtrl.js"></script>
+
+</body>
+</html>
