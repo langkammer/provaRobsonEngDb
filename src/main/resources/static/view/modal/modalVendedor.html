@@ -1,0 +1,64 @@
+<!--
+    Modal edicao, inclusao e vizual para cliente
+-->
+<div class="modal fade" id="modalVendedor" tabindex="-1" role="dialog" aria-labelledby="modalVendedorM">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="modalVendedorM">
+                    <div ng-show="tipoCrud == 'add'">Cadastrar Vendedor</div>
+                    <div ng-show="tipoCrud == 'edit'">Editar Vendedor</div>
+                    <div ng-show="tipoCrud == 'remove'">Excluir Vendedor</div>
+                </h3>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid bd-example-row">
+                    <form name="formItem" role="form" novalidate>
+                        <div class="alert alert-warning" ng-show="tipoCrud == 'remove'">
+                            <strong>Aviso!</strong> Esse Dado Será excluido ao clicar em confirmar
+                        </div>
+                        <div class="row">
+                            <div class="alert alert-danger col-md-12" ng-show="submitted && formItem.$invalid">
+                                <div  ng-repeat="item in formItem.$error">
+                                    <div ng-if="formItem.$error.required"  ng-repeat="i in formItem.$error.required">
+                                        <div>Campo {{i.$name}} : é Obrigatório </div>
+                                    </div>
+                                    <div ng-if="formItem.$error.minlength"  ng-repeat="i in formItem.$error.minlength">
+                                        <div>Campo {{i.$name}} : não cumpre o tamanho de 10 caracteres</div>
+                                    </div>
+                                    <div ng-if="formItem.$error.maxlength"  ng-repeat="i in formItem.$error.maxlength">
+                                        <div>Campo {{i.$name}} : ultrapassa tamanho 50 caracteres </div>
+                                    </div>
+                                    <div ng-if="formItem.$error.cpfIncomplet" ng-repeat="i in formItem.$error.cpfIncomplet">
+                                        <div>Campo {{i.$name}} : não é valido </div>
+                                    </div>
+                                    <div ng-if="formItem.$error.cpfInvalid" ng-repeat="i in formItem.$error.cpfInvalid">
+                                        <div>Campo {{i.$name}} : está incompleto </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-fluid bd-example-row">
+                            <div class="col-md-3" ng-class="submitted && formItem.nome.$invalid ? 'has-error has-feedback' : '' ">Nome Completo</div>
+                            <div class="form-group col-md-9" ng-class="submitted && formItem.nome.$invalid ? 'has-error has-feedback' : '' ">
+                                <input type="text" class="form-control"  name="nome"  ng-model="vendedor.nome"  ng-minlength="10"   ng-maxlength="50" required>
+                            </div>
+                            <div class="col-md-3" ng-class="submitted && formItem.cpf.$invalid ? 'has-error has-feedback' : '' ">Cpf</div>
+                            <div class="form-group col-md-3" ng-class="submitted && formItem.nome.$invalid ? 'has-error has-feedback' : '' ">
+                                <input type="text" class="form-control"   name="cpf" ng-model="vendedor.cpf" cpf-validator required>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" ng-click="confirm(formItem)">Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

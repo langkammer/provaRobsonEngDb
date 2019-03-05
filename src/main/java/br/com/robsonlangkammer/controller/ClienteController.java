@@ -1,15 +1,15 @@
 package br.com.robsonlangkammer.controller;
 
+import br.com.robsonlangkammer.bean.EvenlopResponse;
 import br.com.robsonlangkammer.model.Cliente;
 import br.com.robsonlangkammer.repository.ClienteRepository;
 import br.com.robsonlangkammer.repository.VendedorRepository;
+import br.com.robsonlangkammer.util.ResponseFactory;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController
-public class ClienteController {
+public class ClienteController extends ResponseFactory {
 
     private final ClienteRepository clienteRepository;
 
@@ -22,26 +22,52 @@ public class ClienteController {
     }
 
     @GetMapping(path = "/cliente/listar")
-    public List<Cliente> list(){
-        List<Cliente> todosClientes = clienteRepository.findAll();
+    public EvenlopResponse list(){
+        try{
+            return returnEnvelopSucesso(clienteRepository.findAll(),"Operação Realizada com Sucesso");
+        }
+        catch (Exception e){
+            return returnEnvelopError("Erro ao realizar a Operaçãp " + e.getMessage());
 
-        return todosClientes;
+        }
     }
 
     @PostMapping(path = "/cliente/create")
-    public Cliente create(@RequestBody Cliente cliente){
-        vendedorRepository.saveAndFlush(cliente.getVendedor());
-        return clienteRepository.save(cliente);
+    public EvenlopResponse create(@RequestBody Cliente cliente){
+        try{
+            return returnEnvelopSucesso(clienteRepository.save(cliente),"Operação Realizada com sucesso!");
+        }
+        catch (Exception e){
+            return returnEnvelopError("Erro ao realizar a operacao " + e.getMessage());
+
+        }
+
     }
 
     @GetMapping(path = "/cliente/get/{id}")
-    public Cliente get(@PathVariable Long id){
-        return clienteRepository.findById(id).get();
+    public EvenlopResponse get(@PathVariable Long id){
+
+        try{
+            clienteRepository.findById(id).get();
+            return returnEnvelopSucesso(clienteRepository.findById(id).get(),"Operação Realizada com sucesso!");
+        }
+        catch (Exception e){
+            return returnEnvelopError("Erro ao realizar a operacao " + e.getMessage());
+
+        }
     }
 
     @GetMapping(path = "/cliente/delete/{id}")
-    public void delete(@PathVariable Long id){
-        clienteRepository.deleteById(id);
+    public EvenlopResponse delete(@PathVariable Long id){
+
+        try{
+            clienteRepository.deleteById(id);
+            return returnEnvelopSucesso(null,"Operação Realizada com sucesso!");
+        }
+        catch (Exception e){
+            return returnEnvelopError("Erro ao realizar a operacao " + e.getMessage());
+
+        }
     }
 
 

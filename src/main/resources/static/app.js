@@ -3,20 +3,16 @@
 // Declare app level module which depends on views, and components
 angular.module('App', [
   'ui.router',
-  'ngMaterial',
+  'ui.bootstrap',
   'ui-notification',
-  'checklist-model'
+  'ngMessages',
+  'angularjs-br-directive-validator-cpf'
 ]).
-config(['$locationProvider', '$urlRouterProvider','$stateProvider','$mdThemingProvider','NotificationProvider',
-      function($locationProvider, $urlRouterProvider,$stateProvider,$mdThemingProvider,NotificationProvider) {
+config(['$locationProvider', '$urlRouterProvider','$stateProvider','NotificationProvider',
+      function($locationProvider, $urlRouterProvider,$stateProvider,NotificationProvider) {
 
   $urlRouterProvider.otherwise('/');
 
-  $mdThemingProvider.theme('red')
-      .primaryPalette('red');
-
-  $mdThemingProvider.theme('blue')
-      .primaryPalette('blue');
 
   NotificationProvider.setOptions({
     delay: 10000,
@@ -37,7 +33,7 @@ config(['$locationProvider', '$urlRouterProvider','$stateProvider','$mdThemingPr
     .state('vendedores',{
       url:'/vendedores',
       controller: 'VendedorCtrl',
-      templateUrl:'../view/vendedor/vendedores.html'
+      templateUrl:'view/vendedor/vendedores.html'
     })
     .state('clientes',{
       url:'/clientes',
