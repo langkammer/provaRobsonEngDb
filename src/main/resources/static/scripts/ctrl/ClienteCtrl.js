@@ -59,11 +59,16 @@ angular.module('App').controller('ClienteCtrl', function($scope,$state,Services,
         }
 
         function list(){
-             Services.listCliente(function (data) {
+             Services.listCliente(
+             {
+              "campoPesquisado" : $scope.campoPesquisado,
+              "pesquisa"        : $scope.pesquisa
+             }
+             , function (data) {
                     if (data.status == 'ERRO') {
                         Notification.error(data.menssage);
                     } else {
-                        $scope.lista = data.data;
+                        $scope.lista = data.data.data;
                     }
             });
 
@@ -104,6 +109,7 @@ angular.module('App').controller('ClienteCtrl', function($scope,$state,Services,
         }
 
         function init(){
+            $scope.campoPesquisado = "p.id";
             $scope.submitted = false;
             console.log("Iniciando Controller Cliente ");
             $('#modalCliente').modal('hide');

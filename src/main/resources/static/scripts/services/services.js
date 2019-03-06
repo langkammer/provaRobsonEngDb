@@ -9,8 +9,8 @@
    */
   angular.module('App').service('Services', function (request) {
     return {
-      listCliente: function (successCallback, errorCallback) {
-        request.get('cliente/listar', successCallback, errorCallback);
+      listCliente: function (data,successCallback, errorCallback) {
+        request.post('cliente/listar',data, successCallback, errorCallback);
       },
       createCliente: function (successCallback, errorCallback) {
         request.post('cliente/create', successCallback, errorCallback);

@@ -17,10 +17,18 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-md-9">
-                            <input name="pesq" type="text" ng-enter="listar()" class="form-control" ng-model="nome" placeholder="Pesquisa">
+                        <div class="col-md-2">
+                            <select  id="pesquisa" name="pesquisa" class="form-control" ng-model="campoPesquisado">
+                                <option value="p.id" selected>ID CLIENTE</option>
+                                <option value="p.nome">NOME CLIENTE</option>
+                                <option value="p.vendedor.id">ID VENDEDOR</option>
+                                <option value="p.vendedor.nome">VENDEDOR NOME</option>
+                            </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-8">
+                            <input name="pesq" type="text" ng-enter="listar()" class="form-control" ng-model="pesquisa" placeholder="Pesquisa">
+                        </div>
+                        <div class="col-md-2">
                             <button type="button" class="btn btn-info btn-block" ng-click="listar()">Pesquisar</button>
                         </div>
                     </div>

@@ -1,6 +1,8 @@
 package br.com.robsonlangkammer.controller;
 
 import br.com.robsonlangkammer.bean.EvenlopResponse;
+import br.com.robsonlangkammer.bean.PesquisaClienteBean;
+import br.com.robsonlangkammer.dao.ClienteDao;
 import br.com.robsonlangkammer.model.Cliente;
 import br.com.robsonlangkammer.repository.ClienteRepository;
 import br.com.robsonlangkammer.repository.VendedorRepository;
@@ -15,16 +17,19 @@ public class ClienteController extends ResponseFactory {
 
     private final VendedorRepository vendedorRepository;
 
-    ClienteController(ClienteRepository clienteRepository,VendedorRepository vendedorRepository) {
+    private final ClienteDao clienteDao;
+
+    ClienteController(ClienteRepository clienteRepository,VendedorRepository vendedorRepository,ClienteDao clienteDao) {
         this.clienteRepository = clienteRepository;
         this.vendedorRepository = vendedorRepository;
+        this.clienteDao = clienteDao;
 
     }
 
-    @GetMapping(path = "/cliente/listar")
-    public EvenlopResponse list(){
+    @PostMapping(path = "/cliente/listar")
+    public EvenlopResponse list(@RequestBody PesquisaClienteBean p){
         try{
-            return returnEnvelopSucesso(clienteRepository.findAll(),"Operação Realizada com Sucesso");
+            return returnEnvelopSucesso(clienteDao.listar(p.getCampoPesquisado(),p.getPesquisa()),"Operação Realizada com Sucesso");
         }
         catch (Exception e){
             return returnEnvelopError("Erro ao realizar a Operaçãp " + e.getMessage());
